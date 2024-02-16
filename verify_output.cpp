@@ -24,7 +24,7 @@ bool isDAG(vector<vector<int>> adj){
             stack.pop();
 
             if (discovered.count(curr)) return false;
-            discovered.insert(start);
+            discovered.insert(curr);
 
             for (int neighbor : adj[curr]){
                 stack.push(neighbor);
