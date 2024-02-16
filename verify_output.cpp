@@ -6,34 +6,29 @@
 #include <vector>
 using namespace std;
 
+bool DFS(int curr, vector<vector<int>> &adj, unordered_set<int> discovered, unordered_set<int> processed){
+    if (processed.count(curr)) return true;
+    if (discovered.count(curr)) return false;
+    discovered.insert(curr);
 
-// check if a graph is a DAG (in O(V+E) time)
-bool isDAG(vector<vector<int>> adj){
-    unordered_set<int> discovered;
-
-    // start DFS from every node
-    for (int start = 1; start < adj.size(); start++){
-        if (discovered.count(start)) continue;
-        // setup
-        stack<int> stack;
-        stack.push(start);
-        // DFS
-        int curr;
-        while (!stack.empty()){
-            curr = stack.top();
-            stack.pop();
-
-            if (discovered.count(curr)) return false;
-            discovered.insert(curr);
-
-            for (int neighbor : adj[curr]){
-                stack.push(neighbor);
-            }
-        }
+    for (int child : adj[curr]){
+        if (!DFS(child, adj, discovered, processed)) return false;
     }
+    discovered.erase(curr);
+    processed.insert(curr);
     return true;
 }
 
+// check if a graph is a DAG (in O(V+E) time)
+bool isDAG(vector<vector<int>> adj){
+    unordered_set<int> discovered, processed;
+
+    // start DFS from every node
+    for (int start = 1; start < adj.size(); start++){
+        DFS(start, adj, discovered, processed);
+    }
+    return true;
+}
 
 
 int main(int argc, char* argv[]){
