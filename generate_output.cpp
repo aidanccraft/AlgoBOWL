@@ -212,11 +212,11 @@ int main(int argc, char* argv[]){
 
         // get node to remove
         int nodeToRemove = generateHeuristic(scc, sccReverse);
-        sccForest.pop_front();
         removedNodes.push_back(nodeToRemove);
 
         // remove node and create new scc forest
         deque<adjacency_list> newSccForest = removeNode(scc, sccReverse, nodeToRemove);
+        sccForest.pop_front();
 
         // add sccs to forest
         for (adjacency_list newScc : newSccForest) sccForest.push_back(newScc);
