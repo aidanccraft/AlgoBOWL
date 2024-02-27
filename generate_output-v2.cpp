@@ -104,19 +104,47 @@ void printSccForest(deque<adjacency_list> sccForest) {
 }
 
 void heuristicVisit(int u, adjacency_list& scc, adjacency_list& sccReverse, unordered_map<int, char>& color,
-    unordered_map<int, int>& weight, pair<int, int>& highestWeight) {
+    unordered_map<int, int>& weight, vector<int>& highestWeights) {
     color[u] = 'g';
     for (int v : scc[u]) {
         if (scc.count(v)) {
             if (color[v] == 'w') {
                 weight[v] = weight[u] + sccReverse[v].size() - scc[u].size();
-                if (weight[v] > highestWeight.second)
-                    highestWeight = make_pair(v, weight[v]);
-                heuristicVisit(v, scc, sccReverse, color, weight, highestWeight);
+                if (weight[v] > highestWeights[0])
+                    highestWeights = { weight[v], v };
+                else if (weight[v] == highestWeights[0])
+                    highestWeights.push_back(v);
+                heuristicVisit(v, scc, sccReverse, color, weight, highestWeights);
             }
         }
     }
     color[u] = 'b';
+}
+
+int chooseNode(adjacency_list& scc, adjacency_list& sccReverse, unordered_map<int, int>& weight,
+    vector<int>& highestWeights) {
+    pair<int, int> bestNode = make_pair(100000, -1);
+
+    for (int i = 1; i < highestWeights.size(); i++) {
+        int currentNode = highestWeights[i];
+
+        if (scc[currentNode].size() == 1 && sccReverse[currentNode].size() == 1) continue;
+
+
+        unordered_set<int> neighbors;
+        for (int node : scc[currentNode]) neighbors.insert(node);
+        for (int node : sccReverse[currentNode]) neighbors.insert(node);
+
+        float averageWeight = 0;
+        for (int node : neighbors) averageWeight += weight[node];
+
+        averageWeight /= neighbors.size();
+
+        if (averageWeight < bestNode.first) bestNode = make_pair(averageWeight, currentNode);
+    }
+
+    if (bestNode.second == -1) return highestWeights[1];
+    else return bestNode.second;
 }
 
 int generateHeuristic(adjacency_list& scc, adjacency_list& sccReverse) {
@@ -133,13 +161,13 @@ int generateHeuristic(adjacency_list& scc, adjacency_list& sccReverse) {
 
     // initialize start node
     weight[start] = sccReverse[start].size() - 1;
-    pair<int, int> highestWeight = make_pair(start, weight[start]);
+    vector<int> highestWeights = { weight[start], start };
 
     // run DFS on SCC and assign weight to each node
-    heuristicVisit(start, scc, sccReverse, color, weight, highestWeight);
+    heuristicVisit(start, scc, sccReverse, color, weight, highestWeights);
 
     // return highest weighted node
-    return highestWeight.first;
+    return chooseNode(scc, sccReverse, weight, highestWeights);
 }
 
 deque<adjacency_list> removeNode(adjacency_list& scc, adjacency_list& sccReverse, int removedNode) {
