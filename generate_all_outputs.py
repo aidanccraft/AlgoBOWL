@@ -2,8 +2,8 @@ import os
 from subprocess import run
 
 
-INPUT_DIR = "./test/"
-OUTPUT_DIR = "./testOut/"
+INPUT_DIR = "./realInputs/"
+OUTPUT_DIR = "./realOutputs/"
 
 
 if not os.path.exists(INPUT_DIR):
