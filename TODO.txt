@@ -1,0 +1,78 @@
+Input:  Notes:
+721     everything has in-degree of 2
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734     We have optimal
+735     We have optimal
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746     Already a DAG (no edges?)
+747
+748
+749
+750
+751
+752
+753
+754     We have optimal
+755
+756
+757
+758
+759
+760
+761
+762     (ours)
+763     We have optimal
+764     We have optimal
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774     Already a DAG
+775
+776
+777
+778     We have optimal
+779
+780     We have optimal
+781
+782
+783
+784     We have optimal
+785
+786
+787
+788
+789
+790     We already have optimal
+791     We already have optimal (just a bunch of loops of 4)
+792
+793
+794     (see https://edstem.org/us/courses/50098/discussion/4422089)
+795     (see https://edstem.org/us/courses/50098/discussion/4422089)
+796
+797
