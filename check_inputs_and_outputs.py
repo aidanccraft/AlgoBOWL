@@ -1,7 +1,7 @@
 import os
 
 # folders to check:
-INPUT_FOLDERS = ["testInputs","finalInput"]
+INPUT_FOLDERS = ["testInputs","finalInput","realInputs"]
 OUTPUT_FOLDERS = ["testOutputs"]
 
 
