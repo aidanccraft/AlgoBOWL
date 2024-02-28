@@ -3,7 +3,7 @@ from subprocess import run
 
 
 INPUT_DIR = "../realInputs/"
-OUTPUT_DIR = "../realOutputs/"
+OUTPUT_DIR = "../realOutputs2/"
 
 
 if not os.path.exists(INPUT_DIR):

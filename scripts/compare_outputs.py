@@ -34,7 +34,7 @@ for file in os.listdir(OUTPUT_DIR_1):
     if len(outPath2) < 5 or outPath2[-4:] != ".txt":
         continue
 
-    # ecompare outputs
+    # compare outputs
 
     with open(outPath1, 'r') as f:
         with open(outPath2, 'r') as g:
