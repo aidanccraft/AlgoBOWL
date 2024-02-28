@@ -72,7 +72,7 @@ Input:  Notes:
 791     We already have optimal (just a bunch of loops of 4)
 792
 793
-794     (see https://edstem.org/us/courses/50098/discussion/4422089)
-795     (see https://edstem.org/us/courses/50098/discussion/4422089)
+794     Done manually (see https://edstem.org/us/courses/50098/discussion/4422089)
+795     Error somewhere (see https://edstem.org/us/courses/50098/discussion/4422089)
 796
 797
