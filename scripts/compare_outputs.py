@@ -2,8 +2,8 @@ import os
 from subprocess import run
 
 
-OUTPUT_DIR_1 = "../realOutputs/"
-OUTPUT_DIR_2 = "../realOutputs2/"
+OUTPUT_DIR_1 = "../bestOutputs/"
+OUTPUT_DIR_2 = "../realOutputs3/"
 
 
 if not os.path.exists(OUTPUT_DIR_1):
@@ -46,3 +46,6 @@ for file in os.listdir(OUTPUT_DIR_1):
             if nodes2 < nodes1:
                 print(f"Uploading file {file}")
                 run(f"../algobowl.exe group output upload {outPath2}".split())
+                with open(outPath2, 'r') as f:
+                    with open(outPath1, 'w') as g:
+                        g.write(f.read())
