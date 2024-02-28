@@ -114,7 +114,7 @@ int main(int argc, char* argv[]) {
     // remove nodes
     vector<int> removedNodes;
     for (int i = 1; i < numVertices + 1; i++) {
-        if (btoa[i] != -1) removedNodes.push_back(btoa[i]);
+        if (btoa[i] != -1) removedNodes.push_back(i);
     }
 
     chrono::steady_clock::time_point end = chrono::steady_clock::now();
