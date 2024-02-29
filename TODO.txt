@@ -21,7 +21,7 @@ Input:  Notes:
 740
 741
 742
-743     looks like nodes have in-degree of ~10, low outdegree (pic in test input graph pics)
+743     looks like nodes have in-degree of ~10, low outdegree (pic in all teams pics)
 744
 745
 746     Already a DAG (no edges?)
